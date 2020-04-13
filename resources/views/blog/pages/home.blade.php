@@ -23,33 +23,11 @@
     @endfor
 </div>
 
-<div class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="rounded border p-4">
-                    <div class="row align-items-stretch">
-                        @for ($i = 3; $i < 6; $i++)
-                            <div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
-                                <a href="{{ route('post.detail', $posts[$i]->slug) }}" class="d-flex post-sm-entry">
-                                    <figure class="mr-3 mb-0"><img src="{{ $posts[$i]->post_image }}" alt="Image" class="rounded"></figure>
-                                    <div>
-                                        <span class="post-category bg-danger text-white m-0 mb-2">Travel</span>
-                                        <h2 class="mb-0">{{ $posts[$i]->title }}</h2>
-                                    </div>
-                                </a>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="site-section">
     <div class="container">
-
+        <div class="row mb-5">
+            <div class="col-12 section-heading"><h2>Latest Posts</h2></div>
+        </div>
         <div class="row align-items-stretch retro-layout">
 
             <div class="col-md-5">

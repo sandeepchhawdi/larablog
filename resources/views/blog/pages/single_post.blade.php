@@ -32,14 +32,14 @@
                 </div>
                 
                 <div class="pt-5">
-                    <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: {!! join(', ', $post->tagLinks()) !!}</p>
+                    <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a> @if(!empty($post->tagLinks())) Tags: {!! join(', ', $post->tagLinks()) !!} @endif</p>
                 </div>
                 
                 @include('blog.partials.post_comments')
                 
             </div>
             
-            @include('blog.partials.post_detail_sidebar')
+            @include('blog.partials.right_sidebar')
             
         </div>
     </div>

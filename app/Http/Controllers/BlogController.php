@@ -20,7 +20,7 @@ class BlogController extends Controller
         $tag = $request->get('tag');
         $service = new PostProcesses($tag);
         $data = $service->getResponse();
-        $layout = $tag ? Tag::layout($tag) : 'blog.home';
+        $layout = $tag ? 'blog.pages.category' : 'blog.pages.home';
         return view($layout, $data);
     }
 

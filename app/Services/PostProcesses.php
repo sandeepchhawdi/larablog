@@ -88,7 +88,7 @@ class PostProcesses
             })
             ->where('is_draft', 0)
             ->orderBy('published_at', $reverse_direction ? 'asc' : 'desc')
-            ->simplePaginate(99999999999999); // No limit in theory
+            ->paginate(config('blog.posts_per_page')); // No limit in theory
 
         $posts->appends('tag', $tag->tag);
 

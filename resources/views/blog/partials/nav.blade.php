@@ -39,6 +39,43 @@
                         </li>
                         <li><a href="category.html">Technology</a></li>
                         <li><a href="category.html">Latest</a></li>
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="{{ Request::is('login') ? 'active' : null }}" >
+                                    <a href="{{ route('login') }}">
+                                        {!! trans('larablog.nav.login') !!}
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="{{ Request::is('register') ? 'active' : null }}">
+                                    <a href="{{ route('register') }}">
+                                        {!! trans('larablog.nav.register') !!}
+                                    </a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="has-children">
+                                <a href="#">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown">
+                                    <li>
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {!! trans('larablog.nav.logout') !!}
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item {{ Request::is('admin') ? 'active' : null }}" href="{{ route('admin') }}">
+                                            {!! trans('larablog.nav.admin') !!}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endguest
                     </ul>
                 </nav>
             </div>

@@ -10,7 +10,7 @@
     <!-- END sidebar-box -->
     <div class="sidebar-box">
         <div class="bio text-center">
-            <img src="images/person_2.jpg" alt="Image Placeholder" class="img-fluid mb-5">
+            <img src="{{ asset('blog/images/person_2.jpg') }}" alt="Image Placeholder" class="img-fluid mb-5">
             <div class="bio-body">
                 <h2>Craig David</h2>
                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
@@ -31,7 +31,7 @@
             <ul>
                 <li>
                     <a href="">
-                        <img src="images/img_1.jpg" alt="Image placeholder" class="mr-4">
+                        <img src="{{ asset('blog/images/img_1.jpg') }}" alt="Image placeholder" class="mr-4">
                         <div class="text">
                             <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
                             <div class="post-meta">
@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <a href="">
-                        <img src="images/img_2.jpg" alt="Image placeholder" class="mr-4">
+                        <img src="{{ asset('blog/images/img_2.jpg') }}" alt="Image placeholder" class="mr-4">
                         <div class="text">
                             <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
                             <div class="post-meta">
@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a href="">
-                        <img src="images/img_3.jpg" alt="Image placeholder" class="mr-4">
+                        <img src="{{ asset('blog/images/img_3.jpg') }}" alt="Image placeholder" class="mr-4">
                         <div class="text">
                             <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
                             <div class="post-meta">

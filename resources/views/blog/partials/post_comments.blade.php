@@ -3,7 +3,7 @@
     <ul class="comment-list">
         <li class="comment">
             <div class="vcard">
-                <img src="images/person_1.jpg" alt="Image placeholder">
+                <img src="{{ asset('blog/images/person_1.jpg') }}" alt="Image placeholder">
             </div>
             <div class="comment-body">
                 <h3>Jean Doe</h3>
@@ -15,7 +15,7 @@
 
         <li class="comment">
             <div class="vcard">
-                <img src="images/person_1.jpg" alt="Image placeholder">
+                <img src="{{ asset('blog/images/person_1.jpg') }}" alt="Image placeholder">
             </div>
             <div class="comment-body">
                 <h3>Jean Doe</h3>
@@ -27,7 +27,7 @@
             <ul class="children">
                 <li class="comment">
                     <div class="vcard">
-                        <img src="images/person_1.jpg" alt="Image placeholder">
+                        <img src="{{ asset('blog/images/person_1.jpg') }}" alt="Image placeholder">
                     </div>
                     <div class="comment-body">
                         <h3>Jean Doe</h3>
@@ -40,7 +40,7 @@
                     <ul class="children">
                         <li class="comment">
                             <div class="vcard">
-                                <img src="images/person_1.jpg" alt="Image placeholder">
+                                <img src="{{ asset('blog/images/person_1.jpg') }}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>Jean Doe</h3>
@@ -52,7 +52,7 @@
                             <ul class="children">
                                 <li class="comment">
                                     <div class="vcard">
-                                        <img src="images/person_1.jpg" alt="Image placeholder">
+                                        <img src="{{ asset('blog/images/person_1.jpg') }}" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
                                         <h3>Jean Doe</h3>
@@ -70,7 +70,7 @@
 
         <li class="comment">
             <div class="vcard">
-                <img src="images/person_1.jpg" alt="Image placeholder">
+                <img src="{{ asset('blog/images/person_1.jpg') }}" alt="Image placeholder">
             </div>
             <div class="comment-body">
                 <h3>Jean Doe</h3>
