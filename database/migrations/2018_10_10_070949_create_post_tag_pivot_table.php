@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColorRowToChatterDiscussions extends Migration
+class CreatePostTagPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddColorRowToChatterDiscussions extends Migration
      */
     public function up()
     {
-        Schema::table('chatter_discussion', function (Blueprint $table) {
-            $table->string('color', 20)->nullable()->default('#232629');
+        Schema::create('post_tag_pivot', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('post_id')->unsigned()->index();
+            $table->integer('tag_id')->unsigned()->index();
         });
     }
 
@@ -25,8 +27,6 @@ class AddColorRowToChatterDiscussions extends Migration
      */
     public function down()
     {
-        Schema::table('chatter_discussion', function ($table) {
-            $table->dropColumn('color');
-        });
+        Schema::dropIfExists('post_tag_pivot');
     }
 }

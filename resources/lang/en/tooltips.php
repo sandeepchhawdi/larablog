@@ -24,5 +24,11 @@ return [
         'edit'      => 'Edit Tag',
         'delete'    => 'Delete Tag',
     ],
+    
+    'category' => [
+        'create'    => 'Create New Category',
+        'edit'      => 'Edit Category',
+        'delete'    => 'Delete Category',
+    ],
 
 ];

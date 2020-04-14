@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddChatterSoftDeletes extends Migration
+class CreateCategoriesPostsPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class AddChatterSoftDeletes extends Migration
      */
     public function up()
     {
-        Schema::table('chatter_discussion', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-        Schema::table('chatter_post', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('categories_posts_pivot', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('post_id');
+            $table->bigInteger('category_id');
         });
     }
 
@@ -28,6 +27,6 @@ class AddChatterSoftDeletes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('categories_posts_pivot');
     }
 }

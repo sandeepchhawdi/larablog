@@ -62,12 +62,44 @@ return [
             'choose-image'  => '<i class="nc-icon nc-album-2" aria-hidden="true"></i> Choose Tag Image',
         ],
     ],
+    
+    'create-category' => [
+        'title'     => '<i class="fa fa-category fa-fw" aria-hidden="true"></i> Create New Category',
+        'labels'    => [
+            'category'                   => 'Category',
+            'name'                 => 'Category Name',
+            'slug'              => 'Category Slug',
+            'meta_description'      => 'Category Meta Description',
+            'category-image'        => 'Category Image',
+            'category-image-url'         => 'Category Image Path\Url',
+            'mark_as_menu'          => 'Mark as Menu',
+            'parent_category'          => 'Parent Category',
+            'show_on_homepage'      => 'Show on Homepage',
+            'status'                => 'Status',
+            'sort-direction'        => [
+                'normal'    => 'Normal',
+                'reversed'  => 'Reversed',
+            ],
+        ],
+        'buttons' => [
+            'add-new'       => '<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Category',
+            'choose-image'  => '<i class="nc-icon nc-album-2" aria-hidden="true"></i> Choose Category Image',
+        ],
+    ],
 
     'update-tag' => [
         'title'     => '<i class="fa fa-tag fa-fw" aria-hidden="true"></i> Updating Tag <strong>:tag</strong>',
         'buttons'   => [
             'update'        => '<i class="fa fa-check fa-fw" aria-hidden="true"></i> Update Tag',
             'choose-image'  => '<i class="nc-icon nc-album-2" aria-hidden="true"></i> Choose Tag Image',
+        ],
+    ],
+    
+    'update-category' => [
+        'title'     => '<i class="fa fa-category fa-fw" aria-hidden="true"></i> Updating Category <strong>:category</strong>',
+        'buttons'   => [
+            'update'        => '<i class="fa fa-check fa-fw" aria-hidden="true"></i> Update Category',
+            'choose-image'  => '<i class="nc-icon nc-album-2" aria-hidden="true"></i> Choose Category Image',
         ],
     ],
 

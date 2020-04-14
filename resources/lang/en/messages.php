@@ -23,6 +23,9 @@ return [
         'tag-created'  => 'The tag <strong>:tag</strong> was created.',
         'tag-updated'  => 'The tag <strong>:tag</strong> was updated.',
         'tag-deleted'  => 'Tag <strong>:tag</strong> deleted.',
+        'category-created'  => 'The category <strong>:category</strong> was created.',
+        'category-updated'  => 'The category <strong>:category</strong> was updated.',
+        'category-deleted'  => 'Category <strong>:category</strong> deleted.',
     ],
 
 ];

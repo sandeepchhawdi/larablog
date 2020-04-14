@@ -69,6 +69,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:perms.wr
             'tag' => 'id',
         ],
     ]);
+    
+    Route::resource('categories', 'Admin\CategoryController', [
+        'names'    => [
+            'create'    => 'createcategory',
+            'index'     => 'showcategories',
+            'update'    => 'updatecategory',
+            'store'     => 'storecategory',
+            'edit'      => 'editcategory',
+            'destroy'   => 'destroycategory',
+            'show'      => 'showcategory'
+        ],
+        'parameters' => [
+            'category' => 'id',
+        ],
+    ]);
 
     Route::get('/uploads', 'Admin\AdminController@uploads')->name('admin-uploads');
 

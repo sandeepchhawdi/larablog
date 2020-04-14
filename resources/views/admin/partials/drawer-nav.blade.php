@@ -24,6 +24,19 @@
                 </li>
             @endif
         @endif
+        
+        @if(Auth::check() && Auth::user()->hasPermission('perms.admin'))
+            @if (Route::has('showcategories'))
+                <li class="{{ (Request::routeIs('createcategory') || Request::routeIs('showcategories') || Request::routeIs('editcategory')) || Request::routeIs('showcategory') ? 'active' : null }} ">
+                    <a href="{{ route('showcategories') }}">
+                        <i class="nc-icon nc-tag-content"></i>
+                        <p>
+                            {!! trans('admin.drawer-nav.categories') !!}
+                        </p>
+                    </a>
+                </li>
+            @endif
+        @endif
 
         @if(Auth::check() && Auth::user()->hasPermission('perms.admin'))
             @if (Route::has('showtags'))
