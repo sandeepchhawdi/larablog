@@ -168,9 +168,8 @@
             $('.delete-category-trigger').click(function(event) {
                 var categoryId = $(this).data("category-id");
                 var url = "{{ url('/') }}" + "/admin/categories/" + categoryId;
-                alert(url);
                 $('#modal_delete_category').on('show.bs.modal', function (e) {
-                    document.delete_category_form.action = "{{ url('/') }}" + "/admin/categories/" + categoryId;
+                    document.delete_category_form.action = url;
                 });
             });
 

@@ -169,16 +169,24 @@
             </div>
         </div>
 
-        <div class="form-group has-feedback row {{ $errors->has('layout') ? ' has-error ' : '' }}">
-            {!! Form::label('layout', trans('forms.edit-post.labels.post-layout'), ['class' => 'col-12 control-label']); !!}
-            <div class="col-12">
-                <select name="layout" id="layout" class="form-control">
-                    @foreach ($postTemplates as $postTemplate)
-                        <option @if ($postTemplate['path'] == $layout) selected @endif value="{{ $postTemplate['path'] }}">
-                            {{ $postTemplate['name'] }}
-                        </option>
-                    @endforeach
-                </select>
+        <div class="form-group has-feedback row {{ $errors->has('parent_category') ? ' has-error ' : '' }}">
+            {!! Form::label('parent_category', trans('forms.edit-post.labels.post-parent-category'), ['class' => 'col-12 control-label']); !!}
+            <div class="col-12">                
+                {!! Form::select('parent_category', [0 => 'Select Parent Category'] + $parent_categories, old('parent_category', $parent_category_id), [
+                    'id' => 'parent_category',
+                    'class' => 'form-control'
+                ]) !!}
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback row {{ $errors->has('subcategories') ? ' has-error ' : '' }}">
+            {!! Form::label('subcategories', trans('forms.edit-post.labels.post-subcategories'), ['class' => 'col-12 control-label']); !!}
+            <div class="col-12">                
+                {!! Form::select('subcategories[]', $sub_categories, old('subcategories', $sub_categories_ids), [
+                    'id' => 'subcategories',
+                    'class' => 'form-control',
+                    'multiple' => 'true'
+                ]) !!}
             </div>
         </div>
 

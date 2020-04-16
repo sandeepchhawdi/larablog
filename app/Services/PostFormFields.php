@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Post;
 use App\Models\Tag;
 use Carbon\Carbon;
+use App\Models\Category;
 
 class PostFormFields
 {
@@ -26,6 +27,7 @@ class PostFormFields
         'publish_time'      => '',
         'layout'            => 'blog.post',
         'tags'              => [],
+        'parent_category_id'=> 0
     ];
 
     /**
@@ -69,6 +71,8 @@ class PostFormFields
         return array_merge(
             $fields, [
                 'allTags' => Tag::pluck('tag')->all(),
+                'parent_categories' => Category::parentCategoriesList(),
+                'sub_categories' => Category::parentSubCategoriesList($fields['parent_category_id'])
             ],
             $postFormFieldData
         );
@@ -84,7 +88,18 @@ class PostFormFields
      */
     protected function fieldsFromModel($id, array $fields)
     {
-        $page = Post::findOrFail($id);
+        $page = Post::with(['tags', 'categories'])->findOrFail($id);
+        $parent_category_id = 0;
+        $sub_categories_ids = [];
+        if (!empty($page->categories)) {
+            foreach ($page->categories as $cat) {
+                if ($cat->parent_id == 0) {
+                    $parent_category_id = $cat->id;
+                } else {
+                    $sub_categories_ids[] = $cat->id;
+                }
+            }
+        }
 
         $fieldNames = array_keys(array_except($fields, ['tags']));
 
@@ -96,7 +111,8 @@ class PostFormFields
         }
 
         $fields['tags'] = $page->tags()->pluck('tag')->all();
-
+        $fields['parent_category_id'] = $parent_category_id;
+        $fields['sub_categories_ids'] = $sub_categories_ids;
         return $fields;
     }
 

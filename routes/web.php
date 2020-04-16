@@ -84,6 +84,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:perms.wr
             'category' => 'id',
         ],
     ]);
+    
+    Route::get('category/subcategories/{parent_id}', 'Admin\CategoryController@getChildCategoriesList')->name('parent-subcategories');
 
     Route::get('/uploads', 'Admin\AdminController@uploads')->name('admin-uploads');
 

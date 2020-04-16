@@ -86,13 +86,23 @@ class Post extends Model
     ];
 
     /**
-     * The many-to-many relationship between pages and tags.
+     * The many-to-many relationship between posts and tags.
      *
      * @return BelongsToMany
      */
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag', 'post_tag_pivot');
+    }
+    
+    /**
+     * The many-to-many relationship between posts and categories.
+     *
+     * @return BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'categories_posts_pivot');
     }
 
     /**
@@ -160,6 +170,21 @@ class Post extends Model
 
         $this->tags()->detach();
     }
+    
+    /**
+     * Sync tag relation adding new tags as needed.
+     *
+     * @param array $tags
+     */
+    public function syncCategories($category_ids = [])
+    {
+        if (count($category_ids)) {
+            $this->categories()->sync($category_ids);
+
+            return;
+        }
+    }
+
 
     /**
      * Return the date portion of published_at.

@@ -121,4 +121,13 @@ class CategoryController extends Controller
             ->route('showcategories')
             ->withSuccess(trans('messages.success.category-deleted', ['category' => $category->category]));
     }
+    
+    /**
+     * Function child categories list on the basis parent id
+     * @param type $parent_category_id
+     */
+    public function getChildCategoriesList($parent_id)
+    {
+        return response()->json(Category::parentSubCategoriesList($parent_id));
+    }
 }

@@ -26,6 +26,8 @@ return [
             'post-layout'           => 'Post Layout',
             'post-author'           => 'Post Author',
             'post-meta_description' => 'Meta Description',
+            'post-parent-category'  => 'Post Category',
+            'post-subcategories'   => 'Post Subcategories'
 
         ],
         'buttons' => [

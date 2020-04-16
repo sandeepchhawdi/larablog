@@ -64,6 +64,9 @@ class PostController extends Controller
     {
         $post = Post::create($request->postFillData());
         $post->syncTags($request->get('tags', []));
+        $category_ids = $request->get('subcategories', []);
+        $category_ids[] = $request->get('parent_category', 0);
+        $post->syncCategories($category_ids);
 
         return redirect()->route('editpost', [$post])
                             ->withSuccess(trans('messages.success.post-created'));
@@ -80,7 +83,6 @@ class PostController extends Controller
     {
         $service = new PostFormFields($id);
         $data = $service->handle();
-
         return view('admin.post.edit')->with($data);
     }
 
@@ -98,7 +100,9 @@ class PostController extends Controller
         $post->fill($request->postFillData());
         $post->save();
         $post->syncTags($request->get('tags', []));
-
+        $category_ids = $request->get('subcategories', []);
+        $category_ids[] = $request->get('parent_category', 0);
+        $post->syncCategories($category_ids);
         return redirect()
             ->back()
             ->withSuccess(trans('messages.success.post-updated'));

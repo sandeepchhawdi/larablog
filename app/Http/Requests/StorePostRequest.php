@@ -35,7 +35,7 @@ class StorePostRequest extends FormRequest
             'slug'              => 'required|unique:posts,id,'.$this->id,
             'publish_date'      => 'required',
             'publish_time'      => 'required',
-            'layout'            => 'required',
+            'parent_category'   => 'required|min:1',
         ];
     }
 
@@ -59,8 +59,7 @@ class StorePostRequest extends FormRequest
             'is_draft'          => (bool) $this->is_draft,
             'author'            => $this->author,
             'slug'              => $this->slug,
-            'published_at'      => $published_at,
-            'layout'            => $this->layout,
+            'published_at'      => $published_at
         ];
     }
 }

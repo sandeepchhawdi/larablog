@@ -81,6 +81,22 @@ class Category extends Model
     {
         return Category::where('parent_id', 0)->where('status', 1)->pluck('name', 'id')->all();
     }
+    
+    /**
+     * Get the sub categories list with Id and Name
+     */
+    public static function subCategoriesList()
+    {
+        return Category::where('parent_id', '>', 0)->where('status', 1)->pluck('name', 'id')->all();
+    }
+    
+    /**
+     * Get the sub categories list with Id and Name
+     */
+    public static function parentSubCategoriesList($parent_id)
+    {
+        return Category::where('parent_id', $parent_id)->where('status', 1)->pluck('name', 'id')->all();
+    }
 
     /**
      * Return a tag link.
