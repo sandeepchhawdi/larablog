@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Tag;
-use App\Models\User;
 use App\Services\PostProcesses;
 use Illuminate\Http\Request;
 
@@ -18,9 +17,10 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $tag = $request->get('tag');
-        $service = new PostProcesses($tag);
+        $category = $request->get('category');
+        $service = new PostProcesses($tag, $category);
         $data = $service->getResponse();
-        $layout = $tag ? 'blog.pages.category' : 'blog.pages.home';
+        $layout = ($tag || $category) ? 'blog.pages.category' : 'blog.pages.home';
         return view($layout, $data);
     }
 

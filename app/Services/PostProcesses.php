@@ -5,10 +5,12 @@ namespace App\Services;
 use App\Models\Post;
 use App\Models\Tag;
 use Carbon\Carbon;
+use App\Models\Category;
 
 class PostProcesses
 {
     protected $tag;
+    protected $category;
     protected $postsData;
 
     /**
@@ -16,9 +18,10 @@ class PostProcesses
      *
      * @return void
      */
-    public function __construct($tag)
+    public function __construct($tag, $category)
     {
         $this->tag = $tag;
+        $this->category = $category;
         $this->handle();
     }
 
@@ -29,6 +32,12 @@ class PostProcesses
      */
     public function handle()
     {
+        if ($this->category) {
+            $this->postsData = $this->categoryIndexData($this->category);
+
+            return $this->categoryIndexData($this->category);
+        }
+        
         if ($this->tag) {
             $this->postsData = $this->tagIndexData($this->tag);
 
@@ -58,7 +67,9 @@ class PostProcesses
     protected function normalIndexData()
     {
         $posts = Post::allPublishedPosts()->simplePaginate(config('blog.posts_per_page'));
-
+        $popular_posts = Post::where('mark_as_popular', 1)->orderBy('updated_at', 'desc')->limit(4)->get();
+        $latest_posts = Post::where('mark_as_latest', 1)->orderBy('updated_at', 'desc')->limit(4)->get();
+        $home_page_categories = Category::homePageCategories();
         return [
             'title'             => config('blog.title'),
             'subtitle'          => config('blog.subtitle'),
@@ -67,6 +78,9 @@ class PostProcesses
             'meta_description'  => config('blog.description'),
             'reverse_direction' => config('blog.reverse_pagination_direction'),
             'tag'               => null,
+            'popular_posts'    => $popular_posts,
+            'latest_posts'     => $latest_posts,
+            'home_page_categories'   => $home_page_categories
         ];
     }
 
@@ -80,14 +94,9 @@ class PostProcesses
     protected function tagIndexData($tag)
     {
         $tag = Tag::where('tag', $tag)->firstOrFail();
-        $reverse_direction = (bool) $tag->reverse_direction;
-
-        $posts = Post::where('published_at', '<=', Carbon::now())
-            ->whereHas('tags', function ($q) use ($tag) {
-                $q->where('tag', '=', $tag->tag);
-            })
+        $posts = $tag->posts()
             ->where('is_draft', 0)
-            ->orderBy('published_at', $reverse_direction ? 'asc' : 'desc')
+            ->orderBy('published_at', 'desc')
             ->paginate(config('blog.posts_per_page')); // No limit in theory
 
         $posts->appends('tag', $tag->tag);
@@ -96,12 +105,35 @@ class PostProcesses
 
         return [
             'title'             => $tag->title,
-            'subtitle'          => $tag->subtitle,
             'posts'             => $posts,
             'post_image'        => $post_image,
-            'tag'               => $tag,
-            'reverse_direction' => $reverse_direction,
+            'slug'              => $tag->tag,
             'meta_description'  => $tag->meta_description ?: \ config('blog.description'),
+        ];
+    }
+    
+    /**
+     * Return data for a category index page.
+     *
+     * @param string $tag
+     *
+     * @return array
+     */
+    protected function categoryIndexData($category)
+    {
+        $category = Category::where('slug', $category)->firstOrFail();
+        $posts = $category->posts()->where('is_draft', 0)
+            ->orderBy('published_at', 'desc')
+            ->paginate(config('blog.posts_per_page'));
+        $posts->appends('category', $category->slug);
+        $post_image = $category->image ?: config('blog.post_image');
+
+        return [
+            'title'             => $category->name,
+            'slug'              => $category->slug,
+            'posts'             => $posts,
+            'post_image'        => $post_image,
+            'meta_description'  => $category->meta_description ?: \ config('blog.description'),
         ];
     }
 }

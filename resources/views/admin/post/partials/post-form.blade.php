@@ -189,6 +189,36 @@
                 ]) !!}
             </div>
         </div>
+        
+        <div class="form-group has-feedback row {{ $errors->has('mark_as_popular') ? ' has-error ' : '' }}">
+            {!! Form::label('mark_as_popular', trans('forms.edit-post.labels.mark-as-popular'), ['class' => 'col-12 control-label']); !!}
+            <div class="col-12">                
+                {!! Form::select('mark_as_popular', config('admin.true_false'), old('mark_as_popular', $mark_as_popular), [
+                    'id' => 'mark_as_popular',
+                    'class' => 'form-control'
+                ]) !!}
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback row {{ $errors->has('mark_as_latest') ? ' has-error ' : '' }}">
+            {!! Form::label('mark_as_latest', trans('forms.edit-post.labels.mark-as-latest'), ['class' => 'col-12 control-label']); !!}
+            <div class="col-12">                
+                {!! Form::select('mark_as_latest', config('admin.true_false'), old('mark_as_latest', $mark_as_latest), [
+                    'id' => 'mark_as_latest',
+                    'class' => 'form-control'
+                ]) !!}
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback row {{ $errors->has('show_in_category') ? ' has-error ' : '' }}">
+            {!! Form::label('show_in_category', trans('forms.edit-post.labels.show-in-category'), ['class' => 'col-12 control-label']); !!}
+            <div class="col-12">                
+                {!! Form::select('show_in_category', config('admin.true_false'), old('show_in_category', $show_in_category), [
+                    'id' => 'show_in_category',
+                    'class' => 'form-control'
+                ]) !!}
+            </div>
+        </div>
 
         <div class="form-group has-feedback row {{ $errors->has('meta_description') ? ' has-error ' : '' }}">
             {!! Form::label('meta_description', trans('forms.edit-post.labels.post-meta_description'), ['class' => 'col-12 control-label']); !!}

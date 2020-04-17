@@ -55,6 +55,9 @@ class Post extends Model
         'slug',
         'is_draft',
         'published_at',
+        'show_in_category',
+        'mark_as_latest',
+        'mark_as_popular'
     ];
 
     /**
@@ -103,6 +106,16 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'categories_posts_pivot');
+    }
+    
+    /**
+     * The many-to-many relationship between posts and categories.
+     *
+     * @return BelongsToMany
+     */
+    public function parentCategory()
+    {
+        return $this->belongsToMany('App\Models\Category', 'categories_posts_pivot')->where('parent_id', 0);
     }
 
     /**

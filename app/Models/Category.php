@@ -63,6 +63,16 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Models\Post', 'categories_posts_pivot');
     }
+    
+    /**
+     * The many-to-many relationship between categories and posts.
+     *
+     * @return BelongsToMany
+     */
+    public function homePagePosts()
+    {
+        return $this->belongsToMany('App\Models\Post', 'categories_posts_pivot')->where('show_in_category', true)->orderBy('posts.updated_at', 'desc');
+    }
 
     /**
      * The one to one relationship between post and post.
@@ -74,6 +84,15 @@ class Category extends Model
         return $this->belongsTo('App\Models\Category', 'parent_id');
     }
     
+    /**
+     * Get Home page category posts
+     */
+    public static function homePageCategories()
+    {
+        return Category::with('homepagePosts')->where('show_on_homepage', true)->get();
+    }
+
+
     /**
      * Get the parent categories list with Id and Name
      */

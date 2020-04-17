@@ -5,6 +5,7 @@
 @include('blog.partials.pages_header')
 <div class="site-section bg-light">
     <div class="container">
+        @include('blog.partials.messages')
         <div class="row">
             <div class="col-md-7 mb-5">
                 {!! Form::open(['method' => 'POST', 'route' => 'contactSend',  'class' => 'p-5 bg-white', 'id' => 'contact_form', 'role' => 'form', 'enctype' => 'multipart/form-data' ]) !!}

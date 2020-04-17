@@ -27,7 +27,10 @@ return [
             'post-author'           => 'Post Author',
             'post-meta_description' => 'Meta Description',
             'post-parent-category'  => 'Post Category',
-            'post-subcategories'   => 'Post Subcategories'
+            'post-subcategories'    => 'Post Subcategories',
+            'mark-as-popular'       => 'Mark As Popular',
+            'mark-as-latest'        => 'Mark As Latest',
+            'show-in-category'      => 'Show In Category'
 
         ],
         'buttons' => [

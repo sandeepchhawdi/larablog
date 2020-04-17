@@ -59,7 +59,10 @@ class StorePostRequest extends FormRequest
             'is_draft'          => (bool) $this->is_draft,
             'author'            => $this->author,
             'slug'              => $this->slug,
-            'published_at'      => $published_at
+            'published_at'      => $published_at,
+            'mark_as_popular'   => (bool) $this->mark_as_popular,
+            'mark_as_latest'    => (bool) $this->mark_as_latest,
+            'show_in_category'  => (bool) $this->show_in_category
         ];
     }
 }

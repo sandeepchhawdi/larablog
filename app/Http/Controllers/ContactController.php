@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\ContactUs;
 
 class ContactController extends Controller
 {
@@ -34,8 +35,10 @@ class ContactController extends Controller
     public function contactSend(ContactRequest $request)
     {
         $validatedData = $request->validated();
-
-        Mail::to(config('blog.contact_email'))->send(new ContactMail($validatedData));
+        $contactUs = new ContactUs();
+        $contactUs->fill($validatedData);
+        $contactUs->save();
+//        Mail::to(config('blog.contact_email'))->send(new ContactMail($validatedData));
 
         return back()->withSuccess(trans('forms.contact.messages.sent'));
     }

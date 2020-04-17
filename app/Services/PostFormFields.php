@@ -27,7 +27,10 @@ class PostFormFields
         'publish_time'      => '',
         'layout'            => 'blog.post',
         'tags'              => [],
-        'parent_category_id'=> 0
+        'parent_category_id'=> 0,
+        'mark_as_popular'   => 0,
+        'mark_as_latest'    => 0,
+        'show_in_category'  => 0
     ];
 
     /**
