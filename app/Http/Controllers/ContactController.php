@@ -6,6 +6,8 @@ use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ContactUs;
+use App\Http\Requests\SubscribeUsRequest;
+use App\Models\SubscribeUs;
 
 class ContactController extends Controller
 {
@@ -41,5 +43,20 @@ class ContactController extends Controller
 //        Mail::to(config('blog.contact_email'))->send(new ContactMail($validatedData));
 
         return back()->withSuccess(trans('forms.contact.messages.sent'));
+    }
+    
+    /**
+     * @param \App\Http\Controllers\Request $request
+     */
+    public function subscribeUs(SubscribeUsRequest $request)
+    {
+        $email = $request->input('email');
+        $record = SubscribeUs::where('email', $email)->first();
+        if (!$record) {
+            $subscribeUs = new SubscribeUs();
+            $subscribeUs->fill(['email' => $email]);
+            $subscribeUs->save();
+        }
+        return response()->json(['success' => 'true']);
     }
 }

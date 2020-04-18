@@ -23,6 +23,22 @@ class BlogController extends Controller
         $layout = ($tag || $category) ? 'blog.pages.category' : 'blog.pages.home';
         return view($layout, $data);
     }
+    
+    public function categoryDetail($slug)
+    {
+        $service = new PostProcesses('', $slug);
+        $data = $service->getResponse();
+        $layout = 'blog.pages.category';
+        return view($layout, $data);
+    }
+    
+    public function tagDetail($slug)
+    {
+        $service = new PostProcesses($slug, '');
+        $data = $service->getResponse();
+        $layout = 'blog.pages.category';
+        return view($layout, $data);
+    }
 
     /**
      * Display the specified resource.
@@ -38,17 +54,17 @@ class BlogController extends Controller
 
         // Allow writers to view posts in draft mode and future dates
         if ($user && $user->level() > 2) {
-            $post = Post::with('tags')
+            $post = Post::with(['tags', 'parentCategory.relatedPosts'])
                             ->bySlug($slug)
                             ->firstOrFail();
         } else {
-            $post = Post::with('tags')
+            $post = Post::with(['tags', 'parentCategory.relatedPosts'])
                             ->bySlug($slug)
                             ->publishedTimePast()
                             ->isNotDraft()
                             ->firstOrFail();
         }
-
+        
         $tag = $request->get('tag');
 
         if ($tag) {

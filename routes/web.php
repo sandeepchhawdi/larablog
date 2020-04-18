@@ -13,8 +13,12 @@
 
 Route::group(['middleware' => ['activity']], function () {
 
+    Route::get('/category/{slug}', 'BlogController@categoryDetail')->name('category.detail');
+    Route::get('/tag/{slug}', 'BlogController@tagDetail')->name('tag.detail');
+    
     // Homepage Route
     Route::get('/', 'BlogController@index')->name('home');
+    
 
     // Authors Routes
     Route::get('/authors', 'BlogController@authors')->name('authors');
@@ -23,6 +27,8 @@ Route::group(['middleware' => ['activity']], function () {
     // Contact Routes
     Route::get('/contact', 'ContactController@index')->name('contact');
     Route::post('/contact', 'ContactController@contactSend')->name('contactSend');
+    
+    Route::post('/subscribe-us', 'ContactController@subscribeUs')->name('subscribe-us');
 
     Route::get('/about', 'BlogController@about')->name('about');
     // Register, Login, and forget PW Routes

@@ -105,7 +105,7 @@ class Post extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Category', 'categories_posts_pivot');
+        return $this->belongsToMany('App\Models\Category', 'categories_posts_pivot')->orderBy('parent_id', 'asc');
     }
     
     /**
@@ -239,14 +239,34 @@ class Post extends Model
      *
      * @return array
      */
-    public function tagLinks($base = '/?tag=%TAG%')
+    public function tagLinks()
     {
         $tags = $this->tags()->pluck('tag')->all();
         $return = [];
 
         foreach ($tags as $tag) {
-            $url = str_replace('%TAG%', urlencode($tag), $base);
+            $url = route('tag.detail', $tag);
             $return[] = '<a href="'.$url.'">'.e("#".$tag).'</a>';
+        }
+
+        return $return;
+    }
+    
+    /**
+     * Return array of category links.
+     *
+     * @param string $base
+     *
+     * @return array
+     */
+    public function categoryLinks()
+    {
+        $categories = $this->categories;
+        $return = [];
+
+        foreach ($categories as $category) {
+            $url = route('category.detail', $category->slug);
+            $return[] = '<a href="'.$url.'">'.e("#".$category->name).'</a>';
         }
 
         return $return;

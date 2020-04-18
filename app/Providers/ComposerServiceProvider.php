@@ -17,6 +17,10 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             'layouts.app', 'App\Http\ViewComposers\BlogSettingsComposer'
         );
+        
+        View::composer(
+            '*', 'App\Http\ViewComposers\MenusComposer'
+        );
     }
 
     /**

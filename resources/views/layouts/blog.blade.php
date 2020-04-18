@@ -46,6 +46,29 @@
         <script src="{{ asset('blog/js/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('blog/js/aos.js') }}"></script>
         <script src="{{ asset('blog/js/main.js') }}"></script>
+        <script>
+            $("#btn-subscribe-us").click(function(e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
 
+                var form = $('#form-subscribe-us');
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: form.attr('method'),
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(data)
+                    {
+                        $("#subscribe-us-msg").text("Thankyou for subscribing us!");
+                        $("#subscribe-us-email").val("");
+                    },
+                    error: function(errors)
+                    {
+                        $("#subscribe-us-msg").text("You entered invalid email id");
+                    }
+                });
+                return false;
+            });
+        </script>
     </body>
 </html>

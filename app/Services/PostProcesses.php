@@ -99,8 +99,6 @@ class PostProcesses
             ->orderBy('published_at', 'desc')
             ->paginate(config('blog.posts_per_page')); // No limit in theory
 
-        $posts->appends('tag', $tag->tag);
-
         $post_image = $tag->post_image ?: config('blog.post_image');
 
         return [
@@ -125,7 +123,7 @@ class PostProcesses
         $posts = $category->posts()->where('is_draft', 0)
             ->orderBy('published_at', 'desc')
             ->paginate(config('blog.posts_per_page'));
-        $posts->appends('category', $category->slug);
+
         $post_image = $category->image ?: config('blog.post_image');
 
         return [

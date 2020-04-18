@@ -23,12 +23,16 @@
             <div class="col-md-4">
                 <div class="mb-5">
                     <h3 class="footer-heading mb-4">Subscribe</h3>
-                    <form action="" method="post" class="form-footer-subscribe">
-                        <div class="form-group d-flex">
-                            <input type="text" class="form-control">
-                            <input type="submit" class="btn btn-primary text-white" value="Subscribe">
+                    <form action="{{ route('subscribe-us') }}" method="post" class="form-footer-subscribe" id="form-subscribe-us">
+                        {!! csrf_field() !!}
+                        <div class="d-flex">
+                            <input type="email" name="email" id="subscribe-us-email" placeholder="Enter email id" class="form-control">
+                            <input type="button" id="btn-subscribe-us" class="btn btn-primary text-white" value="Subscribe">                            
                         </div>
-                    </form>
+                        <div class="d-flex">
+                            <span style="color: #fff" id="subscribe-us-msg"></span>
+                        </div>
+                    </form>                    
                 </div>
 
                 <div>

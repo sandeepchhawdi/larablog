@@ -65,6 +65,16 @@ class Category extends Model
     }
     
     /**
+     * The many-to-many relationship between tags and posts.
+     *
+     * @return BelongsToMany
+     */
+    public function relatedPosts()
+    {
+        return $this->belongsToMany('App\Models\Post', 'categories_posts_pivot')->orderBy('published_at')->limit(4);
+    }
+    
+    /**
      * The many-to-many relationship between categories and posts.
      *
      * @return BelongsToMany
@@ -90,6 +100,34 @@ class Category extends Model
     public static function homePageCategories()
     {
         return Category::with('homepagePosts')->where('show_on_homepage', true)->get();
+    }
+    
+    /**
+     * The one to one relationship between categories.
+     *
+     * @return OneToMany
+     */
+    public function subcategories()
+    {
+        return $this->hasMany('App\Models\Category', 'parent_id');
+    }
+    
+    /**
+     * The one to one relationship between categories.
+     *
+     * @return OneToMany
+     */
+    public function menuSubcategories()
+    {
+        return $this->hasMany('App\Models\Category', 'parent_id')->where('mark_as_menu', true);
+    }
+    
+    /**
+     * Get menu categories
+     */
+    public static function menuCategories()
+    {
+        return Category::with('menuSubcategories')->where('parent_id', 0)->where('mark_as_menu', true)->get();
     }
 
 
