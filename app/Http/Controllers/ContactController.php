@@ -40,8 +40,7 @@ class ContactController extends Controller
         $contactUs = new ContactUs();
         $contactUs->fill($validatedData);
         $contactUs->save();
-//        Mail::to(config('blog.contact_email'))->send(new ContactMail($validatedData));
-
+        Mail::to(config('blog.contact_email'))->send(new ContactMail($validatedData));
         return back()->withSuccess(trans('forms.contact.messages.sent'));
     }
     
