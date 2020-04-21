@@ -39,6 +39,15 @@ class BlogController extends Controller
         $layout = 'blog.pages.category';
         return view($layout, $data);
     }
+    
+    public function searchDetail(Request $request)
+    {
+        $searchTerm = $request->get('q');
+        $service = new PostProcesses('', '', $searchTerm);
+        $data = $service->getResponse();
+        $layout = 'blog.pages.category';
+        return view($layout, $data);
+    }
 
     /**
      * Display the specified resource.

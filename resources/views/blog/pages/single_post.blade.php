@@ -47,4 +47,6 @@
 
 @include('blog.partials.post_detail_related_posts')
 
+@include('blog.partials.subscribe_modal_popup')
+
 @endsection

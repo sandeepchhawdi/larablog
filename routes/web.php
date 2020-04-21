@@ -15,6 +15,7 @@ Route::group(['middleware' => ['activity']], function () {
 
     Route::get('/category/{slug}', 'BlogController@categoryDetail')->name('category.detail');
     Route::get('/tag/{slug}', 'BlogController@tagDetail')->name('tag.detail');
+    Route::get('/search', 'BlogController@searchDetail')->name('search.detail');
     
     // Homepage Route
     Route::get('/', 'BlogController@index')->name('home');

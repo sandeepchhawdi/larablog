@@ -69,6 +69,18 @@
                 });
                 return false;
             });
+            
+            $("#btn-post-search").click(function(e){
+                $("#search-error").hide();
+                if ($("#q").val().trim() != "") {
+                    var uri = $("#search-form").attr('action')+"?q="+$("#q").val().trim();
+                    location.href = uri;
+                    return false;
+                } else {
+                    $("#search-error").show();
+                    return false;
+                }
+            });
         </script>
     </body>
 </html>

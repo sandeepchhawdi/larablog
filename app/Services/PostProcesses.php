@@ -11,6 +11,7 @@ class PostProcesses
 {
     protected $tag;
     protected $category;
+    protected $searchTerm;
     protected $postsData;
 
     /**
@@ -18,10 +19,11 @@ class PostProcesses
      *
      * @return void
      */
-    public function __construct($tag, $category)
+    public function __construct($tag = '', $category = '', $searchTerm = '')
     {
         $this->tag = $tag;
         $this->category = $category;
+        $this->searchTerm = $searchTerm;
         $this->handle();
     }
 
@@ -35,18 +37,24 @@ class PostProcesses
         if ($this->category) {
             $this->postsData = $this->categoryIndexData($this->category);
 
-            return $this->categoryIndexData($this->category);
+            return true;
         }
         
         if ($this->tag) {
             $this->postsData = $this->tagIndexData($this->tag);
 
-            return $this->tagIndexData($this->tag);
+            return true;
+        }
+        
+        if ($this->searchTerm) {
+            $this->postsData = $this->searchTermIndexData($this->searchTerm);
+
+            return true;
         }
 
         $this->postsData = $this->normalIndexData();
 
-        return $this->normalIndexData();
+        return true;
     }
 
     /**
@@ -132,6 +140,33 @@ class PostProcesses
             'posts'             => $posts,
             'post_image'        => $post_image,
             'meta_description'  => $category->meta_description ?: \ config('blog.description'),
+        ];
+    }
+    
+    /**
+     * Return data for a category index page.
+     *
+     * @param string $tag
+     *
+     * @return array
+     */
+    protected function searchTermIndexData($searchTerm)
+    {
+        $posts = Post::where('is_draft', 0)
+            ->where('title', 'like', '%'.$searchTerm.'%')
+            ->orderBy('published_at', 'desc')
+            ->paginate(config('blog.posts_per_page'));
+        
+        $posts->appends(['q' => $searchTerm]);
+
+        $post_image = config('blog.post_image');
+
+        return [
+            'title'             => 'Search Page',
+            'slug'              => 'search',
+            'posts'             => $posts,
+            'post_image'        => $post_image,
+            'meta_description'  => config('blog.description'),
         ];
     }
 }

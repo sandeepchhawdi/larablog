@@ -1,9 +1,16 @@
 <div class="col-md-12 col-lg-4 sidebar">
     <div class="sidebar-box search-form-wrap">
-        <form action="#" class="search-form">
+        <form action="{{ route('search.detail') }}" class="search-form" id="search-form">
             <div class="form-group">
-                <span class="icon fa fa-search"></span>
-                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                <input type="text" class="form-control" required="true" id="q" placeholder="Type a keyword and hit enter">
+                <span id="search-error" style="display: none;" class="help-block with-errors">
+                    <small>
+                        <strong>The searched term is invalid.</strong>
+                    </small>
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btn-post-search" value="Search" class="btn btn-primary form-control">
             </div>
         </form>
     </div>
