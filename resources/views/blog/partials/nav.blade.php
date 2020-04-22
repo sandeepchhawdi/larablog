@@ -14,7 +14,7 @@
             <div class="row align-items-center">
 
                 <div class="col-6 col-xl-6 logo">
-                    <h1 class="mb-0"><a href="{{ route('home') }}" class="text-black h2 mb-0">{!! config('app.name', 'Lara(b)log2') !!}</a></h1>
+                    <h1 class="mb-0"><a href="{{ route('home') }}" class="text-black h2 mb-0"><img class="logo-img" src="{{ asset('blog/images/logo_2.png') }}" /></a></h1>
                 </div>
 
                 <div class="col-6 mr-auto py-3 text-right" style="position: relative; top: 3px;">
@@ -39,7 +39,8 @@
                                 @endif
                             </li>
                         @endforeach
-                        @guest
+                        <li class="{{ (Request::route()->getName() == 'contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact Us</a></li>
+                        {{--@guest
                             @if (Route::has('login'))
                                 <li class="{{ Request::is('login') ? 'active' : null }}" >
                                     <a href="{{ route('login') }}">
@@ -75,7 +76,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        @endguest --}}
                     </ul>
                 </nav>
             </div>

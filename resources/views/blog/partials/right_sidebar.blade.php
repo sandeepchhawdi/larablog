@@ -15,7 +15,7 @@
         </form>
     </div>
     <!-- END sidebar-box -->
-    <div class="sidebar-box">
+    <!-- <div class="sidebar-box">
         <div class="bio text-center">
             <img src="{{ asset('blog/images/person_2.jpg') }}" alt="Image Placeholder" class="img-fluid mb-5">
             <div class="bio-body">
@@ -30,9 +30,9 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> -->  
     <!-- END sidebar-box -->  
-    <div class="sidebar-box">
+    <!-- <div class="sidebar-box">
         <h3 class="heading">Popular Posts</h3>
         <div class="post-entry-sidebar">
             <ul>
@@ -71,36 +71,27 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <!-- END sidebar-box -->
+    </div>-->  
 
+@if(!empty($top_categories))
     <div class="sidebar-box">
         <h3 class="heading">Categories</h3>
         <ul class="categories">
-            <li><a href="#">Food <span>(12)</span></a></li>
-            <li><a href="#">Travel <span>(22)</span></a></li>
-            <li><a href="#">Lifestyle <span>(37)</span></a></li>
-            <li><a href="#">Business <span>(42)</span></a></li>
-            <li><a href="#">Adventure <span>(14)</span></a></li>
+            @foreach ($top_categories as $cat )
+                <li><a href="{{ route('category.detail', $cat->slug) }}">{{ $cat->name }} <span>({{ $cat->posts_count }})</span></a></li>
+            @endforeach
         </ul>
     </div>
-    <!-- END sidebar-box -->
+@endif
 
+@if (!empty($top_tags))
     <div class="sidebar-box">
         <h3 class="heading">Tags</h3>
         <ul class="tags">
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Lifestyle</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Freelancing</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Lifestyle</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Freelancing</a></li>
+            @foreach ($top_tags as $tag)
+            <li><a href="{{ route('tag.detail', $tag->tag) }}">{{ $tag->title }}</a></li>
+            @endforeach
         </ul>
     </div>
+@endif
 </div>

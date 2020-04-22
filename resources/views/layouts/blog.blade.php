@@ -81,6 +81,11 @@
                     return false;
                 }
             });
+            
+            $("#load-comments").click(function(e){
+                $("#comment-form").removeClass('hidden');
+                $(this).addClass('hidden');
+            });
         </script>
     </body>
 </html>

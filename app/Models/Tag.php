@@ -114,4 +114,12 @@ class Tag extends Model
 
         return $layout[0] ?: $default;
     }
+    
+    /**
+     * Get top used categories
+     */
+    public static function topUsedTags()
+    {
+        return Tag::withCount('posts')->having('posts_count', '>', 0)->orderBy('posts_count', 'desc')->limit(15)->get();
+    }
 }

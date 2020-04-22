@@ -129,6 +129,14 @@ class Category extends Model
     {
         return Category::with('menuSubcategories')->where('parent_id', 0)->where('mark_as_menu', true)->get();
     }
+    
+    /**
+     * Get top used categories
+     */
+    public static function topUsedCategories()
+    {
+        return Category::withCount('posts')->having('posts_count', '>', 0)->orderBy('posts_count', 'desc')->limit(6)->get();
+    }
 
 
     /**
