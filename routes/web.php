@@ -29,6 +29,8 @@ Route::group(['middleware' => ['activity']], function () {
     Route::get('/contact', 'ContactController@index')->name('contact');
     Route::post('/contact', 'ContactController@contactSend')->name('contactSend');
     
+    Route::post('/comment', 'CommentController@store')->name('save-comment');
+    
     Route::post('/subscribe-us', 'ContactController@subscribeUs')->name('subscribe-us');
 
     Route::get('/about', 'BlogController@about')->name('about');

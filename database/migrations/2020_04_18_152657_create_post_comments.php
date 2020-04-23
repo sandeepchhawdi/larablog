@@ -13,8 +13,15 @@ class CreatePostComments extends Migration
      */
     public function up()
     {
-        Schema::create('post_comments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('post_id');
+            $table->string('name');
+            $table->string('email');
+            $table->text('message');
+            $table->bigInteger('parent_id')->default(0);
+            $table->boolean('status')->default(true);
+            $table->boolean('is_author')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +33,6 @@ class CreatePostComments extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_comments');
+        Schema::dropIfExists('comments');
     }
 }

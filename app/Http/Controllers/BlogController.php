@@ -63,11 +63,12 @@ class BlogController extends Controller
 
         // Allow writers to view posts in draft mode and future dates
         if ($user && $user->level() > 2) {
-            $post = Post::with(['tags', 'parentCategory.relatedPosts'])
+            $post = Post::with(['tags', 'parentCategory.relatedPosts', 'parentComments.childComments'])
                             ->bySlug($slug)
                             ->firstOrFail();
         } else {
-            $post = Post::with(['tags', 'parentCategory.relatedPosts'])
+            $post = Post::with(['tags', 'parentCategory.relatedPosts', 'parentComments.childComments'])
+                            ->withCount('comments')
                             ->bySlug($slug)
                             ->publishedTimePast()
                             ->isNotDraft()

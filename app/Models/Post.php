@@ -99,6 +99,24 @@ class Post extends Model
     }
     
     /**
+     * Get post comments
+     * @return type
+     */
+    public function parentComments()
+    {
+        return $this->hasMany('App\Models\Comment')->where('parent_id', 0);
+    }
+    
+    /**
+     * Get post comments
+     * @return type
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+        /**
      * The many-to-many relationship between posts and categories.
      *
      * @return BelongsToMany

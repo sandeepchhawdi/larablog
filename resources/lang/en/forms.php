@@ -134,6 +134,12 @@ return [
             'captcha' => 'Captcha is required',
         ],
     ],
+    
+    'comment' => [
+        'messages' => [
+            'saved' => 'Your comment has been saved.'
+        ]
+    ],
 
     'sitemap' => [
         'buttons' => [
