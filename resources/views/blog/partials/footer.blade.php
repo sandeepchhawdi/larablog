@@ -1,11 +1,11 @@
 <div class="site-footer">
     <div class="container">
         <div class="row mb-5">
-            <div class="col-md-4">
+            <div class="col-md-8 mb-3">
                 <h3 class="footer-heading mb-4">About Us</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit magnam deleniti quasi saepe, consequatur atque sequi delectus dolore veritatis obcaecati quae, repellat eveniet omnis, voluptatem in. Soluta, eligendi, architecto.</p>
+                <p><strong>Alterpoint</strong> is a platform aiming to share knowledge about Health and Fitness. The main uniqueness of this blog is the self practical knowledge. The author does not recommend anything else just by exploring on google. He is trying to share key rules and experiences which he has applied practically in his life. We hope you will enjoy this blog and the content.</p>
             </div>
-            <div class="col-md-3 ml-auto">
+<!--            <div class="col-md-3 ml-auto">
                 <h3 class="footer-heading mb-4">Quick Menu</h3>
                 <ul class="list-unstyled float-left mr-5">
                     <li><a href="#">About Us</a></li>
@@ -19,9 +19,9 @@
                     <li><a href="#">Sports</a></li>
                     <li><a href="#">Nature</a></li>
                 </ul>
-            </div>
-            <div class="col-md-4">
-                <div class="mb-5">
+            </div>-->
+            <div class="col-md-4 mt-3">
+                <!--<div class="mb-5">-->
                     <h3 class="footer-heading mb-4">Subscribe</h3>
                     <form action="{{ route('subscribe-us') }}" method="post" class="form-footer-subscribe" id="form-subscribe-us">
                         {!! csrf_field() !!}
@@ -33,9 +33,9 @@
                             <span style="color: #fff" id="subscribe-us-msg"></span>
                         </div>
                     </form>                    
-                </div>
+                <!--</div>-->
 
-                <div>
+<!--                <div>
                     <h3 class="footer-heading mb-4">Connect With Us</h3>
                     <p>
                         <a href="#"><span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span></a>
@@ -44,7 +44,7 @@
                         <a href="#"><span class="icon-rss p-2"></span></a>
                         <a href="#"><span class="icon-envelope p-2"></span></a>
                     </p>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="row">

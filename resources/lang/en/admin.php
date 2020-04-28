@@ -93,6 +93,7 @@ return [
                 'image'     => 'Image',
                 'tags'      => 'Tags',
                 'actions'   => 'Actions',
+                'categories' => 'Categories'
             ],
         ],
     ],

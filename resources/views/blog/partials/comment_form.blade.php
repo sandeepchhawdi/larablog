@@ -1,7 +1,7 @@
 <div class="comment-form-wrap" id="comment-form">
     @include('blog.partials.messages')
     <h3>Leave a comment</h3>
-    <form action="{{ route('save-comment') }}" method="post" class="p-5 bg-light">
+    <form action="{{ route('save-comment') }}" method="post" class="p-3 bg-light">
         {!! csrf_field() !!}
         <input type="hidden" name="post_id" value="{{ $post->id }}" />
         <input type="hidden" id="comment-parent-id" name="parent_id" value="0" />
@@ -38,7 +38,7 @@
                 </span>
             @endif
         </div>
-        <div class="form-group">
+        <div class="form-group text-right">
             <input type="submit" value="Post Comment" class="btn btn-primary">
         </div>
     </form>

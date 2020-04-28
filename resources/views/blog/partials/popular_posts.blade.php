@@ -3,6 +3,7 @@
         <div class="row mb-5">
             <div class="col-12 section-heading"><h2>Popular Posts</h2></div>
         </div>
+        @if (count($popular_posts) == 4)
         <div class="row">
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="entry2">
@@ -30,5 +31,6 @@
                 @endfor
             </div>
         </div>
+        @endif
     </div>
 </div>

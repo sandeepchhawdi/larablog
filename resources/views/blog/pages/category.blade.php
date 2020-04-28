@@ -5,7 +5,13 @@
 @include('blog.partials.pages_header', ['title' => $title, 'image' => $post_image])
 <section class="site-section py-lg">
     <div class="container">
-
+        @if (!empty($category))
+            {{ Breadcrumbs::render('category', $category) }}
+        @elseif (!empty($tag))
+            {{ Breadcrumbs::render('tag', $tag) }}
+        @else
+            {{ Breadcrumbs::render('search') }}
+        @endif
         <div class="row blog-entries element-animate">
 
             <div class="col-md-12 col-lg-8 main-content">

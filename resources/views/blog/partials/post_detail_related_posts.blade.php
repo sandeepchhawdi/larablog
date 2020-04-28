@@ -1,9 +1,9 @@
 @if(!empty($post->parentCategory->first()) && !empty($post->parentCategory->first()->relatedPosts))
-<section class="py-5">
+<section>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mb-5">Related Posts</h2>
+                <h2 class="mb-4" style="font-weight: bold;">YOU MAY LIKE ALSO</h2>
             </div>
         </div>
         <div class="row">
@@ -15,14 +15,14 @@
                 @if ($relatedPost->id != $post->id)
                 <div class="col-md-6 col-lg-4">
                     <div class="entry2 mb-5">
-                        <a href="{{ route('post.detail', $relatedPost->slug) }}"><img src="{{ asset('blog/images/img_1.jpg') }}" alt="Image" class="img-fluid rounded"></a>
+                        <a href="{{ route('post.detail', $relatedPost->slug) }}"><img style="height: 208px; width: 100%;" src="{{ $relatedPost->post_image }}" alt="Image" class="img-fluid rounded"></a>
                         <span class="post-category text-white bg-primary mb-3">{{ $relatedPost->parentCategory->first()->name }}</span>
                         <h2><a href="{{ route('post.detail', $relatedPost->slug) }}">{{ $relatedPost->title }}</a></h2>
-                        <div class="post-meta align-items-center text-left clearfix">
+                        {{--<div class="post-meta align-items-center text-left clearfix">
                             <span class="d-inline-block mt-1">By <a href="#">{{ $relatedPost->author }}</a></span>
                             <span>&nbsp;-&nbsp; {{ date('M d, Y', strtotime($relatedPost->published_at)) }}</span>
                         </div>
-                        <p>{{ $relatedPost->subtitle }}</p>
+                        <p>{{ $relatedPost->subtitle }}</p>--}}
                     </div>
                 </div>
                 @php $relatedPostsCount++; @endphp

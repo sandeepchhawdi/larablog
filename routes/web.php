@@ -33,7 +33,9 @@ Route::group(['middleware' => ['activity']], function () {
     
     Route::post('/subscribe-us', 'ContactController@subscribeUs')->name('subscribe-us');
 
-    Route::get('/about', 'BlogController@about')->name('about');
+    Route::get('/{slug}/', 'BlogController@showPost')->name('post.detail');
+
+//    Route::get('/about', 'BlogController@about')->name('about');
     // Register, Login, and forget PW Routes
     Auth::routes();
 });
@@ -117,9 +119,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:perms.us
     Route::get('/', 'Admin\AdminController@index')->name('admin');
     Route::get('/sitemap', 'Admin\AdminController@sitemap')->name('sitemap-admin');
     Route::post('/generate-sitemap', 'Admin\AdminController@generateSitemap')->name('generate-sitemap');
-});
-
-Route::group(['middleware' => ['activity']], function () {
-    // Dynamic Pages Routes
-    Route::get('/{slug}/', 'BlogController@showPost')->name('post.detail');
 });

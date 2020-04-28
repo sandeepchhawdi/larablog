@@ -1,5 +1,5 @@
 <div class="col-md-12 col-lg-4 sidebar">
-    <div class="sidebar-box search-form-wrap">
+    <div class="sidebar-box search-form-wrap mt-2">
         <form action="{{ route('search.detail') }}" class="search-form" id="search-form">
             <div class="form-group">
                 <input type="text" class="form-control" required="true" id="q" placeholder="Type a keyword and hit enter">

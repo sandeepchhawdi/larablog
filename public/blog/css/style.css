@@ -1,7 +1,7 @@
 /* Base */
 body {
   line-height: 1.7;
-  color: gray;
+  color: #191818;
   font-weight: 300;
   font-size: 1rem;
   background: #fff;
@@ -756,7 +756,7 @@ h1, h2, h3, h4, h5,
 .blog-entries .post-meta {
   margin-bottom: 20px;
   font-size: 14px;
-  color: #b3b3b3; }
+  color: #191717; }
   .blog-entries .post-meta .author img {
     width: 30px;
     border-radius: 50%;
@@ -1167,4 +1167,28 @@ span.with-errors {
 
 .logo-img {
     height: 50px;
+}
+
+.bb-breadcrumb{
+    max-width: 1120px;
+    margin: auto;
+}
+.bb-breadcrumb{
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #8c8d94;
+    margin: 0px 0px 14px;
+    text-transform: uppercase;
+}
+.bb-breadcrumb .current{
+    font-weight: 600;
+    color: #3f414d;
+}
+.bb-breadcrumb .root a {
+    color: #8c8d94;
+    text-decoration: none;
 }

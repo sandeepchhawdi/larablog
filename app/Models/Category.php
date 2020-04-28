@@ -81,7 +81,7 @@ class Category extends Model
      */
     public function homePagePosts()
     {
-        return $this->belongsToMany('App\Models\Post', 'categories_posts_pivot')->where('show_in_category', true)->orderBy('posts.updated_at', 'desc');
+        return $this->belongsToMany('App\Models\Post', 'categories_posts_pivot')->where('show_in_category', true)->orderBy('posts.published_at', 'asc');
     }
 
     /**

@@ -3,32 +3,28 @@
 @section('template_description'){{ $post->meta_description }}@endsection
 @section('template_author'){{ $post->author }}@endsection
 @section('content')
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{ $post->post_image }}');">
-    <div class="container">
-        <div class="row same-height justify-content-center">
-            <div class="col-md-12 col-lg-10">
-                <div class="post-entry text-center">
-                    <span class="post-category text-white bg-success mb-3">Nature</span>
-                    <h1 class="mb-4"><a href="#">{{ $post->title }}</a></h1>
-                    <div class="post-meta align-items-center text-center">
-                        <span class="d-inline-block mt-1">By {{ $post->author }}</span>
-                        <span>&nbsp;-&nbsp; {{ date('M d, Y', strtotime($post->published_at)) }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <section class="site-section py-lg">
     <div class="container">
-
+        {{ Breadcrumbs::render('post', $post) }}
         <div class="row blog-entries element-animate">
 
             <div class="col-md-12 col-lg-8 main-content">
+                
+                <div class="mb-3">
+                    <span class="post-category text-white bg-success">{{ ($post->parentCategory->first())? $post->parentCategory->first()->name : "" }}</span>
+                    <h2 style="text-transform: uppercase; font-weight: bold;">{{ $post->title }}</h2>
+                    <div class="post-meta align-items-center text-left">
+                        <span class="d-inline-block mt-1">by <span style="font-weight: bold">{{ $post->author }}</span></span>
+                        <span>&nbsp;-&nbsp; {{ date('M d, Y', strtotime($post->published_at)) }}</span>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <img style="width:100%;" src="{{ $post->post_image }}" />
+                </div>
 
                 <div class="post-content-body">
-                    {!! $post->content_raw !!}
+                    {!! $post->content_html !!}
                 </div>
                 
                 <div class="pt-5">

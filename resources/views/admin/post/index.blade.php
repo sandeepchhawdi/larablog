@@ -61,7 +61,7 @@
                                     {{ trans('admin.posts.table.titles.image') }}
                                 </th>
                                 <th>
-                                    {{ trans('admin.posts.table.titles.tags') }}
+                                    {{ trans('admin.posts.table.titles.categories') }}
                                 </th>
                                 <th data-sortable="false">
                                     {{ trans('admin.posts.table.titles.actions') }}
@@ -108,7 +108,7 @@
                                         </td>
                                         <td>
                                             <span class="badge badge-light badge-pill">
-                                                {!! join('</span> <span class="badge badge-light badge-pill">', $post->tagLinks()) !!}
+                                                {!! join('</span> <span class="badge badge-light badge-pill">', $post->categoryLinks()) !!}
                                             </span>
                                         </td>
                                         <td>

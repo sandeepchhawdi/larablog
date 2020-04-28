@@ -3,24 +3,26 @@
 @section('template_description'){{ trans('larablog.home.description') }}@endsection
 @section('content')
 <div class="slide-one-item home-slider owl-carousel">
-    @for ($i = 0; $i < 3; $i++)
-        <div class="site-cover site-cover-sm same-height overlay" style="background-image: url('{{ $posts[$i]->post_image }}');">
-            <div class="container">
-                <div class="row same-height align-items-center">
-                    <div class="col-md-12 col-lg-6">
-                        <div class="post-entry">
-                            <span class="post-category text-white bg-success mb-3">Nature</span>
-                            <h2 class="mb-4"><a href="{{ route('post.detail', $posts[$i]->slug) }}">{{ $posts[$i]->title }}</a></h2>
-                            <div class="post-meta align-items-center text-left">
-                                <span class="d-inline-block mt-1">By {{ $posts[$i]->author }}</span>
-                                <span>&nbsp;-&nbsp; {{ date('M d, Y', strtotime($posts[$i]->published_at)) }}</span>
+    @if (count($posts) > 0)
+        @foreach ($posts as $post)
+            <div class="site-cover site-cover-sm same-height overlay" style="background-image: url('{{ $post->post_image }}');">
+                <div class="container">
+                    <div class="row same-height align-items-center">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="post-entry">
+                                <!--<span class="post-category text-white bg-success mb-3">Nature</span>-->
+                                <h2 class="mb-4"><a href="{{ route('post.detail', $post->slug) }}">{{ $post->title }}</a></h2>
+                                <div class="post-meta align-items-center text-left">
+                                    {{--<span class="d-inline-block mt-1">By {{ $post->author }}</span>
+                                    <span>&nbsp;-&nbsp; {{ date('M d, Y', strtotime($post->published_at)) }}</span>--}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endfor
+        @endforeach
+    @endif
 </div>
 
 <div class="site-section">
@@ -28,6 +30,7 @@
         <div class="row mb-5">
             <div class="col-12 section-heading"><h2>Latest Posts</h2></div>
         </div>
+        @if (count($latest_posts) == 4)
         <div class="row align-items-stretch retro-layout">
 
             <div class="col-md-5">
@@ -64,7 +67,7 @@
 
             </div>
         </div>
-
+        @endif
     </div>
 </div>
 

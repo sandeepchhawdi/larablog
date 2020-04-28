@@ -74,7 +74,7 @@ class PostProcesses
      */
     protected function normalIndexData()
     {
-        $posts = Post::allPublishedPosts()->simplePaginate(config('blog.posts_per_page'));
+        $posts = Post::isNotDraft()->orderBy('id')->simplePaginate(4);
         $popular_posts = Post::where('mark_as_popular', 1)->orderBy('updated_at', 'desc')->limit(4)->get();
         $latest_posts = Post::where('mark_as_latest', 1)->orderBy('updated_at', 'desc')->limit(4)->get();
         $home_page_categories = Category::homePageCategories();
@@ -114,6 +114,7 @@ class PostProcesses
             'posts'             => $posts,
             'post_image'        => $post_image,
             'slug'              => $tag->tag,
+            'tag'               => $tag,
             'meta_description'  => $tag->meta_description ?: \ config('blog.description'),
         ];
     }
@@ -139,6 +140,7 @@ class PostProcesses
             'slug'              => $category->slug,
             'posts'             => $posts,
             'post_image'        => $post_image,
+            'category'          => $category,
             'meta_description'  => $category->meta_description ?: \ config('blog.description'),
         ];
     }
